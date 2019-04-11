@@ -8,7 +8,9 @@
   <div [class]="getClasses(1)">
     The first product is {{model.getProduct(1).name}}.
   </div>
-  <div [class]="getClasses(2)">
+  <div class="p-2"
+       [class.bg-success]="model.getProduct(2).price < 50"
+       [class.bg-info]="model.getProduct(2).price >= 50">
     The second product is {{model.getProduct(2).name}}
   </div>
 </div>
