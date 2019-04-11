@@ -24,13 +24,12 @@ export class ProductComponent {
     };
   }
 
-  fontSizeWithUnits: string = "30px";
-  fontSizeWithoutUnits: string= "30";
-
-  /*
-  CAUTION: Do not try to use the standard property binding to target the style property to set multiple style values.
-  The object returned by the style property of the JavaScript object that represents the host element in the DOM is read-only.
-  Some browsers will ignore this and allow changes to be made, but the results are unpredictable and cannot be relied on.
-  If you want to set multiple style properties, then create a binding for each of them or use the ngStyle directive.
-   */
+  getStyles(key: number) {
+    let product = this.model.getProduct(key);
+    return {
+      fontSize: "30px",
+      "margin.px": 100,
+      color: product.price > 50 ? "red" : "green"
+    };
+  }
 }
