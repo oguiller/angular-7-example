@@ -5,15 +5,13 @@
 <!--Instead of the above we can use String interpolation binding-->
 
 <div class="text-white m-2">
-  <div class="p-2" [ngClass]="getClassMap(1)">
-    The first product is {{model.getProduct(1).name}}.
+  <div class="p-2 bg-warning">
+    The <span [style.fontSize]="fontSizeWithUnits">first</span>
+    product is {{model.getProduct(1).name}}.
   </div>
-  <div class="p-2" [ngClass]="getClassMap(2)">
-    The second product is {{model.getProduct(2).name}}.
-  </div>
-  <div class="p-2" [ngClass]="{'bg-success': model.getProduct(3).price < 50,
-                                'bg-info': model.getProduct(3).price >= 50}">
-    The third product is {{model.getProduct(3).name}}
+  <div class="p-2 bg-info">
+    The <span [style.fontSize.px]="fontSizeWithoutUnits">second</span>
+    product is {{model.getProduct(2).name}}
   </div>
 </div>
 
