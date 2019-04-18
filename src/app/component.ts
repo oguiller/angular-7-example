@@ -1,6 +1,6 @@
 import { ApplicationRef, Component } from '@angular/core';
-import { Model } from './repository.model';
 import { Product } from './product.model';
+import { Model } from './repository.model';
 
 
 /*
@@ -38,9 +38,17 @@ export class ProductComponent {
     return 'p-2 ' + (product.price < 50 ? 'bg-info' : 'bg-warning');
   }
 
-  /*
-  When Angular performs the bootstrapping process, it creates an ApplicationRef object to represent the application.
-  Without going into detail now, declaring a constructor argument like this tells Angular that the component wants to
-  receive the ApplicationRef object when a new instance is created.
-   */
+  getProduct(key: number): Product {
+    return this.model.getProduct(key);
+  }
+
+  getProducts(): Product[] {
+    return this.model.getProducts();
+  }
+
+  getProductCount(): number {
+    return this.getProducts().length;
+  }
+
+  targetName: string = 'Kayak';
 }
