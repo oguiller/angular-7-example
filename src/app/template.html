@@ -3,9 +3,10 @@
     There are {{getProductCount()}} products.
   </div>
 
-  <div class="bg-info p-2 mt-1" [ngSwitch]="getProductCount()">
-    <span *ngSwitchCase="2">There are two products</span>
-    <span *ngSwitchCase="5">There are five products</span>
-    <span *ngSwitchDefault>This is the default</span>
+  <div class="bg-info p-2 mt-1" [ngSwitch]="getProduct(1).name">
+    <span *ngSwitchCase="targetName">Kayak</span>
+    <span *ngSwitchCase="'Lifejacket'">Lifejacket</span>
+    <!--If you want to compare a result to a specific string, then you must double quote it, like this:-->
+    <span *ngSwitchDefault>Other Product</span>
   </div>
 </div>
