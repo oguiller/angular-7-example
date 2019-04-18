@@ -3,27 +3,9 @@
     There are {{getProductCount()}} products.
   </div>
 
-  <div *ngIf="getProductCount() > 4" class="bg-info p-2 mt-1">
-    There are more than 4 products in the model
-  </div>
-  <div *ngIf="getProductByPosition(0).name != 'Kayak'" class="bg-info p-2 mt-1">
-    The first product isn't a Kayak
+  <div class="bg-info p-2 mt-1" [ngSwitch]="getProductCount()">
+    <span *ngSwitchCase="2">There are two products</span>
+    <span *ngSwitchCase="5">There are five products</span>
+    <span *ngSwitchDefault>This is the default</span>
   </div>
 </div>
-
-<!--
-
-UNDERSTANDING MICRO-TEMPLATE DIRECTIVES
-
-Some directives, such as ngFor, ngIf, and the nested directives used with ngSwitch are prefixed with an asterisk, as in *ngFor, *ngIf, and *ngSwitch. The asterisk is shorthand for using directives that rely on content provided as part of the template, known as a micro-template. Directives that use micro-templates are known as structural directives, a description that I revisit in Chapter 16 when I show you how to create them.
-Listing 13-3 applied the ngIf directive to div elements, which tells the directive to use the div element and its content as the micro-template for each of the objects that it processes. Behind the scenes, Angular expands the micro-template and the directive like this:
-
-<ng-template ngIf="model.getProductCount() > 4">
-  <div class="bg-info p-2 mt-1">
-    There are more than 4 products in the model
-  </div>
-  </ng-template>
-
-You can use either syntax in your templates, but if you use the compact syntax, then you must remember to use the asterisk. I explain how to create your own micro-template directives in Chapter 14.
-
--->
