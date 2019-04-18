@@ -1,5 +1,5 @@
-import { Product } from './product.model';
 import { SimpleDataSource } from './datasource.model';
+import { Product } from './product.model';
 
 export class Model {
 
@@ -46,4 +46,24 @@ export class Model {
     }
     return candidate;
   }
+
+  /*
+    The swapProduct method removes the first object from the array and adds a new object that has the same values for
+    the id, name, category, and price properties. This is an example of data values being represented by a new object.
+   */
+  swapProduct() {
+    let p = this.products.shift();
+    this.products.push(new Product(p.id, p.name, p.category, p.price));
+  }
+
+  /*
+     The method has to define two parameters: the position of the object in the data source and the data object.
+     The result of the method uniquely identifies an object, and two objects are considered to be equal if
+     they produce the same result.
+     Two Product objects will be considered equal if they have the same id value.
+     */
+  getKey(index: number, product: Product) {
+    return product.id;
+  }
+
 }
