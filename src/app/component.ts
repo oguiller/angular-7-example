@@ -51,11 +51,7 @@ export class ProductComponent {
     return this.getProducts().length;
   }
 
-  get nextProduct(): Product {
-    return this.model.getProducts().shift();
+  getProductPrice(index: number): number {
+    return Math.floor(this.getProduct(index).price);
   }
-
-  targetName: string = 'Kayak';
-
-  counter: number = 1;
 }
