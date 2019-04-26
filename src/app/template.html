@@ -11,6 +11,25 @@
              [ngTemplateOutletContext]="{title: 'Footer'}">
 </ng-template>
 
-<div class="bg-info p-2 text-white">
-  Next Product is {{nextProduct.name}}
+<div class='bg-info p-2'>
+  The rounded price is {{Math.floor(getProduct(1).price)}}
 </div>
+
+<!--
+  When Angular processes these expressions, the component provides the getProductCount method, which Angular invokes
+with the specified arguments and then incorporates the result into the HTML document. The component is said to provide
+the template’s expression context.
+-->
+
+<!--
+  The expression context means you can’t access objects defined outside of the template’s component and, in particular,
+templates can’t access the global namespace. The global namespace is used to define common utilities, such as the console
+object, which defines the log method I have been using to write out debugging information to the browser’s JavaScript
+console. The global namespace also includes the Math object, which provides access to some useful arithmetical methods,
+such as min and max.
+-->
+
+<!--
+To demonstrate this restriction, Listing 13-20 adds a string interpolation binding to the template that relies on
+the Math.floor method to round down a number value to the nearest integer.
+-->
