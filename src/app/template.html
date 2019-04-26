@@ -1,8 +1,8 @@
 <div class="m-2">
   <div class="bg-info text-white p-2">
-    Selected Product: {{selectedProduct || '(None)'}}
+    Selected Product: {{product.value || '(None)'}}
   </div>
-  <table class="table table-sm table-bordered">
+  <table class="table table-sm table-bordered m-2">
     <tr>
       <th></th>
       <th>Name</th>
@@ -10,7 +10,8 @@
       <th>Price</th>
     </tr>
     <tr *ngFor="let item of getProducts(); let i = index"
-        [class.bg-info]="getSelected(item)">
+        (mouseover)="product.value=item.name"
+        [class.bg-info]="product.value==item.name">
       <td (mouseover)="selectedProduct=item.name">{{i + 1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.category}}</td>
@@ -19,20 +20,21 @@
   </table>
   <div class="form-group">
     <label>Product Name</label>
-    <input class="form-control" (input)="selectedProduct=$event.target.value"/>
+    <input #product class="form-control" (input)="false"/>
   </div>
 </div>
 
 <!--
-When the browser triggers an event, it provides an object that describes it. There are different types of event object
-for different categories of event (mouse events, keyboard events, form events, and so on), but all events share the
-three properties
-  - type:      This property returns a string that identifies the type of event that has been triggered.
-  - target:    This property returns the object that triggered the event, which will generally be the object that
-  represents the HTML element in the DOM.
-  - timeStamp: This property returns a number that contains the time that the event was triggered, expressed as
-  milliseconds since January 1, 1970.
+Reference variables are defined using the # character, followed by the variable name. In the listing, I defined a variable called product like this:
 
-  The event object is assigned to a template variable called $event, and the binding expression uses this variable to
-   access the event object’s target property.
+...
+Selected Product: {{product.value || '(None)'}}
+...
+
+Angular won’t update the data bindings in the template when the user edits the contents of the input element unless
+there is an event binding on that element. Setting the binding to false gives Angular something to evaluate just so the
+update process will begin and distribute the current contents of the input element throughout the template.
+This is a quirk of stretching the role of a template reference variable a little too far and isn’t something you will
+need to do in most real projects. As you will see in later examples—and later chapters—most data bindings rely on
+variables defined by the template’s component.
 -->
