@@ -1,15 +1,12 @@
-<ng-template #titleTemplate>
-  <h4 class="p-2 bg-success text-white">Repeated Content</h4>
+<ng-template #titleTemplate let-text="title">
+  <h4 class="p-2 bg-success text-white">{{text}}</h4>
 </ng-template>
-<ng-template [ngTemplateOutlet]="titleTemplate"></ng-template>
+<ng-template [ngTemplateOutlet]="titleTemplate"
+             [ngTemplateOutletContext]="{title: 'Header'}">
+</ng-template>
 <div class="bg-info p-2 m-2 text-white">
   There are {{getProductCount()}} products.
 </div>
-<ng-template [ngTemplateOutlet]="titleTemplate"></ng-template>
-
-<!--
-  With this change (adding the trackBy), the ngFor directive will know that the Product that is removed from the
-  array using the swapProduct method defined in Listing 13-12 is equivalent to the one that is added to the array,
-  even though they are different objects. Rather than delete and create elements, the existing elements can be moved,
-  which is a much simpler and quicker task to perform.
--->
+<ng-template [ngTemplateOutlet]="titleTemplate"
+             [ngTemplateOutletContext]="{title: 'Footer'}">
+</ng-template>
