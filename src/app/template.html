@@ -7,7 +7,6 @@
     border: 2px solid #6bc502
   }
 </style>
-
 <div class="m-2">
   <div class="bg-info p-2 mb-2">Model Data: {{jsonProduct}}</div>
   <form novalidate (ngSubmit)="addProduct(newProduct)">
@@ -16,21 +15,25 @@
       <input class="form-control"
              name="name"
              [(ngModel)]="newProduct.name"
+             #name="ngModel"
              required
              minlength="5"
              pattern="^[A-Za-z ]+$"/>
+      <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+        <li *ngIf="name.errors.required">
+          You must enter a product name
+        </li>
+        <li *ngIf="name.errors.pattern">
+          Product names can only contain letters and spaces
+        </li>
+        <li *ngIf="name.errors.minlength">
+          Product names must be at least
+          {{name.errors.minlength.requiredLength}} characters
+        </li>
+      </ul>
     </div>
     <button class="btn btn-primary" type="submit">
       Create
     </button>
   </form>
 </div>
-
-<!--
-
-The validation attributes that Angular uses are the same ones used by the HTML 5 specification, so I have added the
-novalidate attribute to the form element, which tells the browser not to use its native validation features, which are
-inconsistently implemented by different browsers and generally get in the way. Since Angular will be providing the validation,
-the browser’s own implementation of these features is not required.
-
--->
