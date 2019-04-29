@@ -1,41 +1,16 @@
 <div class="m-2">
-  <div class="bg-info text-white p-2">
-    Selected Product: {{selectedProduct || '(None)'}}
-  </div>
-  <table class="table table-sm table-bordered m-2">
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Price</th>
-    </tr>
-    <tr *ngFor="let item of getProducts(); let i = index"
-        [class.bg-info]="getSelected(item)">
-      <td (mouseover)="selectedProduct=item.name">{{i + 1}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.category}}</td>
-      <td>{{item.price}}</td>
-    </tr>
-  </table>
+  <div class="bg-info text-white mb-2 p-2">Model Data: {{jsonProduct}}</div>
   <div class="form-group">
-    <label>Product Name</label>
-    <input class="form-control" [(ngModel)]="selectedProduct"/>
+    <label>Name</label>
+    <input class="form-control" [(ngModel)]="newProduct.name"/>
   </div>
   <div class="form-group">
-    <label>Product Name</label>
-    <input class="form-control" [(ngModel)]="selectedProduct"/>
+    <label>Category</label>
+    <input class="form-control" [(ngModel)]="newProduct.category"/>
   </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input class="form-control" [(ngModel)]="newProduct.price"/>
+  </div>
+  <button class="btn btn-primary" (click)="addProduct(newProduct)">Create</button>
 </div>
-<!--
-The ngModel directive is used to simplify two-way bindings so that you don’t have to apply both an event and a property
-binding to the same element. Listing 14-10 shows how to replace the separate bindings with the ngModel directive.
-
-banana-in-a-box
-
-It is important that you remember to use both brackets and parentheses with the ngModel binding. If you use just
-parentheses—(ngModel)—then you are setting an event binding for an event called ngModel, which doesn’t exist.
-The result is an element that won’t be updated or won’t update the rest of the application. You can use the ngModel
-directive with just square brackets—[ngModel]—and Angular will set the initial value of the element but won’t listen
-for events, which means that changes made by the user won’t be automatically reflected in the application model.
-
--->
