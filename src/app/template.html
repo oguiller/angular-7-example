@@ -1,6 +1,6 @@
 <div class="m-2">
   <div class="bg-info text-white p-2">
-    Selected Product: {{product.value || '(None)'}}
+    Selected Product: {{selectedProduct || '(None)'}}
   </div>
   <table class="table table-sm table-bordered m-2">
     <tr>
@@ -10,8 +10,7 @@
       <th>Price</th>
     </tr>
     <tr *ngFor="let item of getProducts(); let i = index"
-        (mouseover)="product.value=item.name"
-        [class.bg-info]="product.value==item.name">
+        [class.bg-info]="getSelected(item)">
       <td (mouseover)="selectedProduct=item.name">{{i + 1}}</td>
       <td>{{item.name}}</td>
       <td>{{item.category}}</td>
@@ -20,21 +19,23 @@
   </table>
   <div class="form-group">
     <label>Product Name</label>
-    <input #product class="form-control" (input)="false"/>
+    <input class="form-control" [(ngModel)]="selectedProduct"/>
+  </div>
+  <div class="form-group">
+    <label>Product Name</label>
+    <input class="form-control" [(ngModel)]="selectedProduct"/>
   </div>
 </div>
-
 <!--
-Reference variables are defined using the # character, followed by the variable name. In the listing, I defined a variable called product like this:
+The ngModel directive is used to simplify two-way bindings so that you don’t have to apply both an event and a property
+binding to the same element. Listing 14-10 shows how to replace the separate bindings with the ngModel directive.
 
-...
-Selected Product: {{product.value || '(None)'}}
-...
+banana-in-a-box
 
-Angular won’t update the data bindings in the template when the user edits the contents of the input element unless
-there is an event binding on that element. Setting the binding to false gives Angular something to evaluate just so the
-update process will begin and distribute the current contents of the input element throughout the template.
-This is a quirk of stretching the role of a template reference variable a little too far and isn’t something you will
-need to do in most real projects. As you will see in later examples—and later chapters—most data bindings rely on
-variables defined by the template’s component.
+It is important that you remember to use both brackets and parentheses with the ngModel binding. If you use just
+parentheses—(ngModel)—then you are setting an event binding for an event called ngModel, which doesn’t exist.
+The result is an element that won’t be updated or won’t update the rest of the application. You can use the ngModel
+directive with just square brackets—[ngModel]—and Angular will set the initial value of the element but won’t listen
+for events, which means that changes made by the user won’t be automatically reflected in the application model.
+
 -->
