@@ -1,3 +1,13 @@
+<style>
+  input.ng-dirty.ng-invalid {
+    border: 2px solid #ff0000
+  }
+
+  input.ng-dirty.ng-valid {
+    border: 2px solid #6bc502
+  }
+</style>
+
 <div class="m-2">
   <div class="bg-info p-2 mb-2">Model Data: {{jsonProduct}}</div>
   <form novalidate (ngSubmit)="addProduct(newProduct)">
