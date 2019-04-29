@@ -56,6 +56,22 @@ export class ProductComponent {
     return messages;
   }
 
+  /*
+   * The NgForm object assigned to the form template reference variable provides access to the individual elements
+   * through a property named controls. This property returns an object that has properties for each of the individual
+   * elements in the form.
+   */
+
+  getFormValidationMessages(form: NgForm): string[] {
+    let messages: string[] = [];
+    Object.keys(form.controls).forEach(k => {
+      this.getValidationMessages(form.controls[k], k)
+        .forEach(m => messages.push(m));
+    });
+    return messages;
+  }
+
+
   formSubmitted: boolean = false;
 
   submitForm(form: NgForm) {
