@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { PaAttrDirective } from './attr.directive';
 import { ProductComponent } from './component';
+
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
-  declarations: [ProductComponent],
+  declarations: [ProductComponent, PaAttrDirective],
   bootstrap: [ProductComponent]
 })
 
